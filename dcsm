@@ -1,0 +1,21 @@
+#!/bin/sh /etc/rc.common
+
+EXTRA_COMMANDS="status"
+
+START=99
+
+start () {
+ dcsm -r
+}
+
+stop () {
+ killall dcsm
+}
+
+status() {
+	if `pgrep dcsm > /dev/null 2>&1`; then
+		echo running
+	else
+		echo stopped
+	fi
+}
